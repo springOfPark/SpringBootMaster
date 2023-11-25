@@ -30,6 +30,20 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- JSTL -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+
+        <!-- JSP 사용 tomcat-embed-jasper (스프링 부트 내장 톰캣) -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
     </dependencies>
+
 
 </project>
