@@ -22,15 +22,6 @@ public class TestController extends BaseControllerTemplate {
 
         System.out.println(param);
 
-        System.out.println(param.get("id"));
-        System.out.println(param.get("name"));
-        System.out.println(param.get("phone"));
-        System.out.println(param.get("listMap"));
-
-        List<Map<String, Object>> listMap = (List<Map<String, Object>>) param.get("listMap");
-        Optional<Map<String, Object>> findMap = listMap.stream().filter((map) -> map.containsKey("map3")).findAny();
-        System.out.println(findMap);
-
         ResponseEntity<Map<String, Object>> mapResponseEntity = new ResponseEntity<>(param, HttpStatus.OK);
         return mapResponseEntity;
 
