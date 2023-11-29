@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,5 +43,14 @@ public class DefaultTransactionData {
 
     }
 
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("DefaultTransactionData ==> Post Consturct 실행 : 빈 생성 후 실행");
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("DefaultTransactionData ==> Pre Destory 실행 : 요청이 끝나면 소멸");
+    }
 
 }
