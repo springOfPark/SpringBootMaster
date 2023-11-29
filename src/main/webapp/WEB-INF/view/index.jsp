@@ -3,9 +3,9 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Test</title>
+    <title>Title Index</title>
 </head>
 <body>
-Test Content
+Contents
 </body>
 </html>
