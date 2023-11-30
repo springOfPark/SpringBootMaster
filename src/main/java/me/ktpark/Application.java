@@ -1,16 +1,22 @@
 package me.ktpark;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
+import me.ktpark.websvc.base.extension.TransactionSpec;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.WebApplicationType;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
-import org.springframework.core.env.Environment;
 
-@SpringBootApplication
+
+// @SpringBootApplication
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan(
+        basePackageClasses = Application.class
+        , includeFilters = { @Filter(type = FilterType.ANNOTATION, classes = TransactionSpec.class) }
+)
 @PropertySource("classpath:/config/boardApplication.properties")
 public class Application {
 

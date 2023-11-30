@@ -1,9 +1,7 @@
-package me.ktpark.websvc.base.controller.extension;
+package me.ktpark.websvc.base.extension;
 
-import org.apache.catalina.util.RequestUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
@@ -27,8 +25,8 @@ public class BaseControllerTemplate {
                 LOGGER.info("Header {} ==> [{}]", headerKey, req.getHeader(headerKey));
             }
         });
-        Enumeration<String> parameterNames = req.getParameterNames();
-        parameterNames.asIterator().forEachRemaining((paramKey) -> {
+
+        req.getParameterNames().asIterator().forEachRemaining((paramKey) -> {
 
             for (String parameterValue : req.getParameterValues(paramKey)) {
                 LOGGER.info("Parameter NAME : {} ==> [{}]", paramKey, parameterValue);

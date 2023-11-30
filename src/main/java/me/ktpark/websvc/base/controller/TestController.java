@@ -1,6 +1,6 @@
 package me.ktpark.websvc.base.controller;
 
-import me.ktpark.websvc.base.controller.extension.BaseControllerTemplate;
+import me.ktpark.websvc.base.extension.BaseControllerTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 public class TestController extends BaseControllerTemplate {
