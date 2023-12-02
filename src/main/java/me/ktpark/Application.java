@@ -7,16 +7,18 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGenerator;
 import org.springframework.context.annotation.PropertySource;
 
 
 // @SpringBootApplication
 @SpringBootConfiguration
-@EnableAutoConfiguration
 @ComponentScan(
         basePackageClasses = Application.class
+        , nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
         , includeFilters = { @Filter(type = FilterType.ANNOTATION, classes = TransactionSpec.class) }
 )
+@EnableAutoConfiguration
 @PropertySource("classpath:/config/boardApplication.properties")
 public class Application {
 

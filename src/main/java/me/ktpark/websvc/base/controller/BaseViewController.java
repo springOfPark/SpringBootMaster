@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class BaseViewController implements ApplicationContextAware {
@@ -30,7 +31,10 @@ public class BaseViewController implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
         serviceMap = this.applicationContext.getBeansWithAnnotation(TransactionSpec.class);
-        System.out.println(serviceMap);
+
+        serviceMap.entrySet().forEach((set) -> {
+            System.out.println("serviceMap : " + set.getKey() + " / " + set.getValue());
+        });
     }
 
     @RequestMapping("/{path1}")
