@@ -44,9 +44,6 @@ public class BaseViewController implements ApplicationContextAware {
 
         defaultTransactionData.putRequestParam(param);
 
-        System.out.println(defaultTransactionData);
-        System.out.println(defaultTransactionData.getBody());
-
         DefaultTransactionService transactionService = (DefaultTransactionService) serviceMap.get(path1);
 
         if (transactionService != null) {

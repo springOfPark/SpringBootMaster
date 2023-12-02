@@ -1,6 +1,5 @@
 package me.ktpark.websvc.base.controller;
 
-import me.ktpark.websvc.base.extension.BaseControllerTemplate;
 import me.ktpark.websvc.base.extension.DefaultTransactionData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
-public class TransactionController extends BaseControllerTemplate {
+public class TransactionController {
 
     static final Logger LOGGER = LoggerFactory.getLogger(TransactionController.class);
 
@@ -26,15 +25,11 @@ public class TransactionController extends BaseControllerTemplate {
 
     @PostMapping("/transaction/{path1}")
     public ResponseEntity<Map<String, Object>> transactionPath1(@PathVariable String path1, @RequestBody Map<String, Object> param, HttpServletRequest requset) {
-        printRequestInfo(requset);
-        System.out.println(param);
         return new ResponseEntity<>(param, HttpStatus.OK);
     }
 
     @PostMapping("/transaction/{path1}/{path2}")
     public ResponseEntity<Map<String, Object>> transactionPath1(@PathVariable String path1, @PathVariable String path2, @RequestBody Map<String, Object> param, HttpServletRequest requset) {
-        printRequestInfo(requset);
-        System.out.println(param);
         ResponseEntity<Map<String, Object>> mapResponseEntity = new ResponseEntity<>(param, HttpStatus.OK);
         return mapResponseEntity;
     }
