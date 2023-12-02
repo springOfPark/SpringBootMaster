@@ -9,10 +9,7 @@ public class CharacterSetFilter {
 
     @Bean
     public CharacterEncodingFilter characterEncodingFilter() {
-        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding("UTF-8");
-        characterEncodingFilter.setForceEncoding(true);
-        return characterEncodingFilter;
+        return new CharacterEncodingFilter("UTF-8", true);
     }
 
 }
