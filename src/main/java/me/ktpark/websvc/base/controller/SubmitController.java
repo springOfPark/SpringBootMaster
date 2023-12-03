@@ -14,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -36,7 +34,7 @@ public class SubmitController implements ApplicationContextAware {
         serviceMap = applicationContext.getBeansWithAnnotation(TransactionSpec.class);
     }
 
-    final static Logger LOGGER = LoggerFactory.getLogger(SubmitController.class);
+    final static Logger log = LoggerFactory.getLogger(SubmitController.class);
 
     @PostMapping("/{path1}")
     public String transactionPath1(@PathVariable String path1, @RequestParam Map<String, Object> param, HttpServletRequest requset, Model model) {

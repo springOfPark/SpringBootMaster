@@ -2,24 +2,19 @@ package me.ktpark.websvc.base.controller;
 
 import me.ktpark.websvc.base.extension.DefaultTransactionData;
 import me.ktpark.websvc.base.extension.DefaultTransactionService;
-import me.ktpark.websvc.base.extension.ServiceManager;
 import me.ktpark.websvc.base.extension.TransactionSpec;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/websvc")
