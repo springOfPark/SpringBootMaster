@@ -15,7 +15,7 @@ public class CustomFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        log.info("커스텀 필터 : init 이벤트가 발생하였습니다.");
+        log.info("커스텀 필터 : init 초기화 이벤트가 발생하였습니다. [서블릿 (서버) 실행 시 최초 한번만 실행]");
         // filterConfig.getInitParameterNames().asIterator().forEachRemaining(System.out::println);
     }
 
