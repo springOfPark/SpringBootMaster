@@ -22,6 +22,7 @@ import org.springframework.context.annotation.PropertySource;
 )
 @EnableAutoConfiguration
 @PropertySource("classpath:/config/boardApplication.properties")
+@PropertySource("classpath:/config/fileApplication.properties")
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package me.ktpark.websvc.config.spring;
+package me.ktpark.websvc.config.spring.props;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

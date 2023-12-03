@@ -13,6 +13,7 @@
 
         const SUBMIT_TRNASACTION_URL = "${pageContext.request.contextPath}/submit/TST/TST010001";
         const TRNASACTION_URL = "${pageContext.request.contextPath}/transaction/TST/TST010001";
+        const UPLOAD_SUBMIT_URL = "${pageContext.request.contextPath}/fileUploadSubmit";
 
        function fn_submit_test_json() {
 
@@ -39,15 +40,25 @@
         function fn_submit() {
             submitFormById(SUBMIT_TRNASACTION_URL, "transForm");
         }
+
+        function fn_submit_multipart() {
+
+            const submitForm = document.querySelector("#transForm");
+            submitForm.action = UPLOAD_SUBMIT_URL;
+            submitForm.submit();
+
+        }
     </script>
 
 </head>
 <body>
 
     pageContext.request.contextPath : ${pageContext.request.contextPath}
+    Session : <%=session.getId()%> / <%=session.isNew()%>
+
 
     <%--  enctype="multipart/form-data" --%>
-    <form id="transForm" name="transForm" method="post">
+    <form id="transForm" name="transForm" method="post" enctype="multipart/form-data">
         <input type="text" name="id" id="id" placeholder="아이디를 입력하세요." value="ReyMysterio" />
         <input type="text" name="name" id="name" placeholder="이름을 입력하세요." value="Mexi" />
         <input type="text" name="phone" placeholder="000-0000-0000" value="010-5000-9050" />
@@ -60,7 +71,14 @@
         <input type="checkbox" name="checks" value="A1" id="check1" /><label for="check1">체크하기1</label>
         <input type="checkbox" name="checks" value="A2" id="check2" /><label for="check2">체크하기2</label>
 
-        <input type="file" name="uploadFile" id="uploadFile" />
+        <br />
+        업로드 파일 01 :
+        <input type="file" name="uploadFile01" id="uploadFile01_1" />
+        <input type="file" name="uploadFile01" id="uploadFile01_2" />
+        <input type="file" name="uploadFile01" id="uploadFile01_3" />
+        <br />
+        업로드 파일 02 :
+        <input type="file" name="uploadFile02" id="uploadFile02_1" />
 
     </form>
 
@@ -71,5 +89,6 @@
     <br />
     <button type="button" onclick="fn_submit()">SUBMIT</button>
     <br />
+    <button type="button" onclick="fn_submit_multipart()">File Upload Submit</button>
 </body>
 </html>

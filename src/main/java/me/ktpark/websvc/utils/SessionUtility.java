@@ -21,6 +21,7 @@ public class SessionUtility {
         LocalDateTime sessionCreateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(creationTime), ZoneId.systemDefault());
         LocalDateTime sessionLastAccessedTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(lastAccessedTime), ZoneId.systemDefault());
 
+        System.out.println("세션이 새로 생성 되었는가? ==> " + session.isNew());
         System.out.println("세션 생성 시간 ==> " + sessionCreateTime);
         System.out.println("세션 아이디 ==> " + session.getId());
         System.out.println("세션 마지막 접근 시간 ==> " + sessionLastAccessedTime);
