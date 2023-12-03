@@ -12,6 +12,14 @@ import java.util.Map;
 public class ServiceManager {
 
     @Autowired
-    DefaultTransactionData defaultTransactionData;
+    private ApplicationContext applicationContext;
 
+    public DefaultTransactionData getCurrentTransactionData() {
+        DefaultTransactionData defaultTransactionData = applicationContext.getBean(DefaultTransactionData.class);
+        return defaultTransactionData;
+    }
+
+    public void serviceManagerTest() {
+        System.out.println("서비스 매니저 사용 가능합니다.");
+    }
 }

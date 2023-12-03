@@ -7,5 +7,8 @@
 </head>
 <body>
 Contents
+
+<a href="${pageContext.request.contextPath}/websvc/TST/TST0101">테스트 페이지 이동하기</a>
+
 </body>
 </html>

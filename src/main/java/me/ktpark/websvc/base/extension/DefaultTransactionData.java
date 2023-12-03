@@ -10,19 +10,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Scope(value = "request")
 public class DefaultTransactionData {
 
     private final Map<String, Object> header = new HashMap<>();
     private final Map<String, Object> body = new HashMap<>();
-    private final Map<String, Object> tail = new HashMap<>();
 
     private final String DEFAULT_REQUEST_PARAM_PATH = "/request/param";
     private final String DEFAULT_RESPONSE_RESULT_PATH = "/response/result";
-
-    public void printDefaultTransactionDataClass() {
-        System.out.println("defaultTransactionData : " + this);
-    }
 
     public DefaultTransactionData build() {
 
@@ -53,19 +48,7 @@ public class DefaultTransactionData {
         return responseParam;
     }
 
-    @PostConstruct
-    public void postConstruct() {
-        System.out.println("DefaultTransactionData ==> Post Consturct 실행 : 빈 생성 후 실행");
-    }
-
-    @PreDestroy
-    public void preDestroy() {
-        System.out.println("DefaultTransactionData ==> Pre Destory 실행 : 요청이 끝나면 소멸");
-    }
-
     public Map<String, Object> getBody() {
-        System.out.println(this);
-        System.out.println(this.body);
         return this.body;
     }
 }

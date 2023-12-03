@@ -4,6 +4,8 @@ import me.ktpark.websvc.base.extension.TransactionSpec;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.FilterType;
@@ -20,7 +22,7 @@ import org.springframework.context.annotation.PropertySource;
 )
 @EnableAutoConfiguration
 @PropertySource("classpath:/config/boardApplication.properties")
-public class Application {
+public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
 
@@ -30,4 +32,9 @@ public class Application {
 
     }
 
+    // WAR 패키징
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(Application.class);
+    }
 }

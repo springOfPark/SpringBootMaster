@@ -7,6 +7,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 @Component
@@ -15,6 +20,18 @@ public class RequestUtility {
     private final Logger log = LoggerFactory.getLogger(RequestUtility.class);
 
     public void printRequestLog(HttpServletRequest req) {
+
+        log.info("[REQUEST] REQUEST_URI : {}", req.getRequestURI());
+        log.info("[REQUEST] REQUEST_AUTH_TYPE : {}", req.getAuthType());
+        log.info("[REQUEST] REQUEST_PATH_TRANSLATED : {}", req.getPathTranslated());
+        log.info("[REQUEST] REQUEST_PATH_INFO : {}", req.getPathInfo());
+        HttpSession session = req.getSession();
+        log.info("[REQUEST] REQUEST_SESSION : {}", session);
+
+        long creationTime = session.getCreationTime();
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(creationTime), ZoneId.of("Asia/Seoul"));
+        log.info("[REQUEST] REQUEST_SESSION_CREATE_TIME : {}", localDateTime);
+        log.info("[REQUEST] REQUEST_SESSION_ID : {}", session.getId());
 
         req.getHeaderNames().asIterator().forEachRemaining((headerKey) -> {
             if (!headerKey.startsWith("sec-")) {
@@ -32,8 +49,6 @@ public class RequestUtility {
             Arrays.stream(paramValues).forEach((val) -> log.info(" ==> {}", val));
         });
         log.info("======================================================================================");
-
-
 
     }
 
@@ -53,11 +68,13 @@ public class RequestUtility {
 
         // log.info("[MODEL AND VIEW] {} : ", );
 
-        System.out.println(modelAndView.getModel());
-        System.out.println(modelAndView.getView());
-        System.out.println(modelAndView.getViewName());
-        System.out.println(modelAndView.getModelMap());
-        System.out.println(modelAndView.getStatus());
+        if (modelAndView != null) {
+            System.out.println(modelAndView.getModel());
+            System.out.println(modelAndView.getView());
+            System.out.println(modelAndView.getViewName());
+            System.out.println(modelAndView.getModelMap());
+            System.out.println(modelAndView.getStatus());
+        }
 
     }
 }
