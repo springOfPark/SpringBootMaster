@@ -21,14 +21,21 @@ public class SessionListener implements HttpSessionListener {
     @Autowired
     private SessionUtility sessionUtility;
 
+    private int activateSessionCnt = 0;
+
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         se.getSession().setMaxInactiveInterval(125);
         sessionUtility.printSessionInfo(se.getSession());
+        activateSessionCnt++;
+        System.out.println("activateSessionCnt : " + activateSessionCnt);
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
+
+        activateSessionCnt--;
+
         HttpSession session = se.getSession();
 
         long creationTime = session.getCreationTime();
@@ -36,6 +43,7 @@ public class SessionListener implements HttpSessionListener {
         LocalDateTime sessionCreateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(creationTime), ZoneId.systemDefault());
         LocalDateTime sessionLastAccessedTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(lastAccessedTime), ZoneId.systemDefault());
 
+        System.out.println("activateSessionCnt : " + activateSessionCnt);
         System.out.println("소멸 세션 ID : " + session.getId() + " ==> Created In " + sessionCreateTime + " ==> Destroyed In " + LocalDateTime.now());
         System.out.println("Last AccessedTime : " + sessionLastAccessedTime);
         System.out.println(":::::::::::::::::::::::: 세션 DESTROYED ::::::::::::::::::::::::");

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 @Component
@@ -21,6 +20,7 @@ public class RequestUtility {
 
     public void printRequestLog(HttpServletRequest req) {
 
+        log.info("[REQUEST] HTTP 서블릿 맵핑 : {}", req.getHttpServletMapping());
         log.info("[REQUEST] REQUEST_URI : {}", req.getRequestURI());
         log.info("[REQUEST] REQUEST_AUTH_TYPE : {}", req.getAuthType());
         log.info("[REQUEST] REQUEST_PATH_TRANSLATED : {}", req.getPathTranslated());

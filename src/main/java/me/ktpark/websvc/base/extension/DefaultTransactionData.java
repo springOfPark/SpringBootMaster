@@ -15,11 +15,18 @@ public class DefaultTransactionData {
 
     private final String DEFAULT_REQUEST_PARAM_PATH = "/request/param";
     private final String DEFAULT_RESPONSE_RESULT_PATH = "/response/result";
+    public boolean IS_INIT;
 
     public DefaultTransactionData build() {
 
-        body.put(DEFAULT_REQUEST_PARAM_PATH, new HashMap<>());
-        body.put(DEFAULT_RESPONSE_RESULT_PATH, new HashMap<>());
+        if (!IS_INIT) {
+
+            body.put(DEFAULT_REQUEST_PARAM_PATH, new HashMap<>());
+            body.put(DEFAULT_RESPONSE_RESULT_PATH, new HashMap<>());
+
+        }
+
+        IS_INIT = true;
 
         return this;
 

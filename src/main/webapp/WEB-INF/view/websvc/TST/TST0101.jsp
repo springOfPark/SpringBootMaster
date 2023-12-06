@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <title>TST0101</title>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/webjar-jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/request.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/webjar-jquery/3.6.0-10/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/front/scripts/request.js"></script>
 
     <script>
 
@@ -54,7 +54,14 @@
 <body>
 
     pageContext.request.contextPath : ${pageContext.request.contextPath}
+    <br />
     Session : <%=session.getId()%> / <%=session.isNew()%>
+    <br />
+    Request Param : ${bodyReq}
+    <br />
+    Result Data : ${bodyRes.resultMap}
+    <br />
+    Result Data : ${bodyRes.resultString}
 
 
     <%--  enctype="multipart/form-data" --%>

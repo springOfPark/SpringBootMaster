@@ -23,6 +23,7 @@ public class CustomFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         log.info("커스텀 필터 : doFilter 이벤트가 발생하였습니다.");
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+        log.info("커스팀 펄티 적용중인 PATH : {}", httpServletRequest.getRequestURI());
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
