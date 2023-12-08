@@ -73,6 +73,8 @@
 
         <input type="text" name="korTest" value="한글 보기" />
 
+        <input type="text" name="paramValue" value="파라미터 벨류 값 테스트 합니다" />
+
         <br />
 
         <input type="checkbox" name="checks" value="A1" id="check1" /><label for="check1">체크하기1</label>

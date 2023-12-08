@@ -21,8 +21,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(logInterceptor)
-                .excludePathPatterns("/resources/**")
+                .excludePathPatterns("/front/**")
                 .excludePathPatterns("/webjars/**")
+                .excludePathPatterns("/favicon.ico")
+                .order(-1) // 낮은 순서일수록 우선순위가 높음
         ;
     }
 
