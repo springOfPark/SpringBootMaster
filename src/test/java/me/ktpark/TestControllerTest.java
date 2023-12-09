@@ -13,8 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -40,7 +39,10 @@ public class TestControllerTest {
                         .accept(MediaType.APPLICATION_JSON) // 응답 받을 타입
                         .content(toJSON))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("박경택")) // JSON 값 중 값이 맞는지 확인
+        ;
+        ;
 
     }
 
