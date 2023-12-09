@@ -2,6 +2,7 @@ package me.ktpark.websvc.base.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,14 @@ public class TestController {
         ResponseEntity<Map<String, Object>> mapResponseEntity = new ResponseEntity<>(param, HttpStatus.OK);
         return mapResponseEntity;
 
+    }
+    @GetMapping("/test/test")
+    public String test(@RequestBody String body) {
+        return body;
+    }
+    @GetMapping("/test/json")
+    public Map<String, Object> testJson(@RequestBody Map<String, Object> body) {
+        return body;
     }
 
 }
