@@ -1,8 +1,11 @@
 package me.ktpark.websvc.config.spring;
 
+import me.ktpark.Application;
 import me.ktpark.websvc.interceptors.LogInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,6 +20,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable("configureDefaultServletHandling");
     }*/
+
+    // XML Mapping 추가
+    @Bean
+    public Jaxb2Marshaller jaxb2Marshaller() {
+        Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+        // 해당 패키지 부터 전체 스캔 (Component Scan 과 동일한 기능)
+        jaxb2Marshaller.setPackagesToScan(Application.class.getPackageName());
+        return jaxb2Marshaller;
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

@@ -1,5 +1,7 @@
 package me.ktpark.websvc.base.controller;
 
+import me.ktpark.websvc.define.Course;
+import me.ktpark.websvc.define.Person;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,16 @@ public class TestController {
     }
     @GetMapping("/test/json")
     public Map<String, Object> testJson(@RequestBody Map<String, Object> body) {
+        return body;
+    }
+
+    @PostMapping("/test/xml")
+    public Person testXML(@RequestBody Person body) {
+        return body;
+    }
+
+    @PostMapping("/test/courseXml")
+    public Course testXML(@RequestBody Course body) {
         return body;
     }
 

@@ -7,11 +7,9 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @Configuration
 public class CharacterSetFilterConfig {
 
-    /*
     @Bean
     public CharacterEncodingFilter characterEncodingFilter() {
         return new CharacterEncodingFilter("UTF-8", true);
     }
-    */
 
 }
