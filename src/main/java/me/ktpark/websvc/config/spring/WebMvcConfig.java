@@ -2,6 +2,7 @@ package me.ktpark.websvc.config.spring;
 
 import me.ktpark.Application;
 import me.ktpark.websvc.interceptors.LogInterceptor;
+import org.apache.tika.Tika;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private LogInterceptor logInterceptor;
+
+    @Bean
+    public Tika tika() {
+        return new Tika();
+    }
 
     /*@Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

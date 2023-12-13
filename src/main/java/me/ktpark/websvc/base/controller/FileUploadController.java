@@ -2,16 +2,23 @@ package me.ktpark.websvc.base.controller;
 
 import me.ktpark.websvc.base.model.FileModel;
 import me.ktpark.websvc.base.service.FileService;
+import org.apache.tika.Tika;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +30,9 @@ public class FileUploadController {
 
     @Autowired
     private FileService fileService;
+
+    @Autowired
+    private Tika tika;
 
     @PostMapping("/fileUploadSubmit")
     public String fileUploadSubmit(MultipartHttpServletRequest multipartRequest, @RequestParam Map<String, Object> param) throws Exception {
@@ -50,14 +60,29 @@ public class FileUploadController {
          */
 
         // 1. 파일 업로드
-        List<FileModel> savedFileList = fileService.uploadFilesWithMultipartRequest(multipartRequest);
-
-
         // 2. 업로드 한 파일 객체 반환
+        List<FileModel> savedFileList = fileService.uploadFilesWithMultipartRequest(multipartRequest);
 
         // 3. 파일 객체 데이터베이스 Insert
 
         return "/websvc/common/submitResult";
+
+    }
+
+    @RequestMapping("/fileDownload")
+    public ResponseEntity<Resource> fileDownload() throws IOException {
+
+        Resource resource = fileService.downloadResourceFile();
+        File file = resource.getFile();
+
+        String mediaType = tika.detect(file);
+        System.out.println(mediaType);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_TYPE, mediaType)
+                .header(HttpHeaders.CONTENT_DISPOSITION, resource.getFilename())
+                .header(HttpHeaders.CONTENT_LENGTH, String.valueOf(file.length()))
+                .body(resource);
 
     }
 

@@ -6,6 +6,8 @@ import me.ktpark.websvc.utils.FileUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -30,6 +32,9 @@ public class FileService {
 
     @Autowired
     private FileUtility fileUtility;
+
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     public List<FileModel> uploadFilesWithMultipartRequest(MultipartHttpServletRequest request) throws Exception {
 
@@ -77,4 +82,17 @@ public class FileService {
         return fileModelList;
     }
 
+    public Resource downloadResourceFile() throws IOException {
+
+        String uploadPath = fileProperties.getUploadPath();
+        String fileName = "favicon-32x32.png";
+        String fileLocation = String.format("file:%s/20231203/%s", uploadPath, fileName);
+
+        Resource resource = resourceLoader.getResource(fileLocation);
+        System.out.println(resource);
+        System.out.println("resource.exists(): " + resource.exists());
+
+        return resource;
+
+    }
 }
