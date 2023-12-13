@@ -1,13 +1,13 @@
 package me.ktpark.websvc.base.controller;
 
+import me.ktpark.websvc.base.model.Event;
 import me.ktpark.websvc.define.Course;
 import me.ktpark.websvc.define.Person;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -38,6 +38,11 @@ public class TestController {
     @PostMapping("/test/courseXml")
     public Course testXML(@RequestBody Course body) {
         return body;
+    }
+
+    @RequestMapping("/binding/test")
+    public Event getEvent(@Validated @ModelAttribute Event event, BindingResult bindingResult) {
+        return new Event();
     }
 
 }
